@@ -2,11 +2,11 @@
 
 /**
  * Plugin Name: WooCommerce Payment Gateway - CCBill
- * Plugin URI: https://www.ccbill.com/cs/wiki/tiki-index.php?page=CCBill+Modules+for+Third+Party+Products#WooCommerce
+ * Plugin URI: https://ccbill.com/doc/ccbill-woocommerce-module
  * Description: Accept CCBill payments on your WooCommerce website.
  * Version: 1.4.0
  * Author: CCBill
- * Author URI: http://www.ccbill.com/
+ * Author URI: https://ccbill.com/
  * License: Closed
  *
  * @package WordPress
