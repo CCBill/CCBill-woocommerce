@@ -1,16 +1,13 @@
-=== Plugin Name ===
-Contributors: CCBill
-Tags: CCBill, payment, gateway, WooCommerce
-Requires at least: 3.0.1
-Tested up to: 5.8.1
-Stable tag: trunk
-License: Private
-License URI: https://www.ccbill.com/online-merchants/index.php?utm_campaign=Integration%20Partner%20Tracking&utm_medium=Partner%20Page&utm_source=WooCommerce
 
-Accept CCBill payments on your WooCommerce website.
+<h1 align="center">
+  <br>
 
-== Description ==
+  <br>
+  CCBill WooCommerce Plugin
+  <br>
+</h1>
 
+<p align="center">
 The CCBill payment gateway plugin for WooCommerce allows you to easily configure and accept CCBill
 payments on your WooCommerce-enabled Wordpress Website.
 
@@ -20,12 +17,20 @@ Offering a complete package at easy rates, CCBill’s service includes a payment
 
 With billions of consumers linked to a broad, flexible e-commerce platform, plus dozens of integrated software partners, CCBill represents reliability and integrity to consumers and merchants alike.
 
-[Click here to get started with taking payments online.](https://www.ccbill.com/online-merchants/index.php?utm_campaign=Integration%20Partner%20Tracking&utm_medium=Partner%20Page&utm_source=WooCommerce)
+[Click here to get started with taking payments online.](https://ccbill.com/)
 
 This plugin requires WooCommerce.
+</p>
 
-== Installation ==
+<p align="center">
+  <a href="https://kb.ccbill.com/CCBill+API">API</a> •
+  <a href="https://ccbill.com/kb/">Knowledge Base</a> •
+  <a href="https://kb.ccbill.com/FlexForms">FlexForms</a> •
+  <a href="https://kb.ccbill.com/CCBill+Pay+Merchant+FAQs">CCBill Pay</a> •
+  <a href="https://ccbill.com/contact">Support</a>
+</p>
 
+## Installation
 Installation involves the following steps:
 * Installing the CCBill payment module for WooCommerce
 * Configuring your CCBill account for use with WooCommerce
@@ -33,7 +38,7 @@ Installation involves the following steps:
 
 **Installation Options**
 
-The CCBill WooCommerce module can be installed either by searching for the hosted WordPress plugin, or by uploading the plugin downloaded from the CCBill website.
+The CCBill WooCommerce module can be installed either by searching for the hosted WordPress plugin, or by uploading the plugin downloaded from the CCBill GitHub page.
 
 **Installing via WordPress Plugin Directory**
 
@@ -130,7 +135,7 @@ In the left menu, select "A URL."
 
 Select "Add A New URL" and enter the base URL for your WooCommerce store, followed by: /?wc-api=WC_Gateway_CCBill&Action=CheckoutSuccess
 
-For example, if your WooCommerce store is located at http://www.test.com, the Approval URL would be: http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=CheckoutSuccess
+For example, if your WooCommerce store is located at [http://www.test.com](http://www.test.com/), the Approval URL would be: [http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=CheckoutSuccess](http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=CheckoutSuccess)
 
 ** URL Name **
 
@@ -159,7 +164,7 @@ Select "Webhooks" from the left menu, then select "Add" to add a new webhook. We
 
 Under Webhook URL, enter the base URL for your WooCommerce store, followed by: /?wc-api=WC_Gateway_CCBill
 
-For example, if your WooCommerce store is located at http://www.test.com, the Approval URL would be: http://www.test.com//?wc-api=WC_Gateway_CCBill
+For example, if your WooCommerce store is located at [http://www.test.com](http://www.test.com/), the Approval URL would be: [http://www.test.com//?wc-api=WC_Gateway_CCBill](http://www.test.com//?wc-api=WC_Gateway_CCBill)
 
 Select "NewSaleFailure" and "NewSaleSuccess," then click the Update button to save the Webhook information.
 
@@ -207,22 +212,22 @@ Enter the URL of your WooCommerce store under "Site Name"
 Under Approval URL, enter the base URL for your WooCommerce store, followed by:
 /?wc-api=WC_Gateway_CCBill&Action=CheckoutSuccess
 
-For example, if your WooCommerce store is located at http://www.test.com, the Approval URL would be:
-http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=CheckoutSuccess
+For example, if your WooCommerce store is located at [http://www.test.com](http://www.test.com/), the Approval URL would be:
+[http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=CheckoutSuccess](http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=CheckoutSuccess)
 
-If your WooCommerce store is located at http://www.test.com/woo, then the Approval URL would be:
-http://www.test.com/woo/?wc-api=WC_Gateway_CCBill&Action=CheckoutSuccess
+If your WooCommerce store is located at [http://www.test.com/woo](http://www.test.com/woo), then the Approval URL would be:
+[http://www.test.com/woo/?wc-api=WC_Gateway_CCBill&Action=CheckoutSuccess](http://www.test.com/woo/?wc-api=WC_Gateway_CCBill&Action=CheckoutSuccess)
 
 **Denial URL**
 
 Under Denial URL, enter the base URL for your WooCommerce store, followed by:
 /?wc-api=WC_Gateway_CCBill&Action=CheckoutFailure
 
-For example, if your WooCommerce store is located at http://www.test.com, the Denial URL would be:
-http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=CheckoutFailure
+For example, if your WooCommerce store is located at [http://www.test.com](http://www.test.com/), the Denial URL would be:
+[http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=CheckoutFailure](http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=CheckoutFailure)
 
-If your WooCommerce store is located at http://www.test.com/woo, then the Denial URL would be:
-http://www.test.com/woo/?wc-api=WC_Gateway_CCBill&Action=CheckoutFailure
+If your WooCommerce store is located at [http://www.test.com/woo](http://www.test.com/woo), then the Denial URL would be:
+[http://www.test.com/woo/?wc-api=WC_Gateway_CCBill&Action=CheckoutFailure](http://www.test.com/woo/?wc-api=WC_Gateway_CCBill&Action=CheckoutFailure)
 
 **Redirect Time**
 
@@ -236,28 +241,26 @@ While still in the "Sub Account Admin" section, select "Advanced" from the left 
 Under Approval Post URL, enter the base URL for your WooCommerce store, followed by:
 /?wc-api=WC_Gateway_CCBill&Action=Approval_Post
 
-For example, if your WooCommerce store is located at http://www.test.com, the Approval URL would be:
-http://www.test.com//?wc-api=WC_Gateway_CCBill&Action=Approval_Post
+For example, if your WooCommerce store is located at [http://www.test.com](http://www.test.com/), the Approval URL would be:
+[http://www.test.com//?wc-api=WC_Gateway_CCBill&Action=Approval_Post](http://www.test.com//?wc-api=WC_Gateway_CCBill&Action=Approval_Post)
 
-If your WooCommerce store is located at http://www.test.com/woo, then the Approval URL would be:
-http://www.test.com/woo//?wc-api=WC_Gateway_CCBill&Action=Approval_Post
+If your WooCommerce store is located at [http://www.test.com/woo](http://www.test.com/woo), then the Approval URL would be:
+[http://www.test.com/woo//?wc-api=WC_Gateway_CCBill&Action=Approval_Post](http://www.test.com/woo//?wc-api=WC_Gateway_CCBill&Action=Approval_Post)
 
 **Denial Post URL**
 Under Denial Post URL, enter the base URL for your WooCommerce store, followed by:
 /?wc-api=WC_Gateway_CCBill&Action=Denial_Post
 
-For example, if your WooCommerce store is located at http://www.test.com, the Denial URL would be:
-http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=Denial_Post
+For example, if your WooCommerce store is located at [http://www.test.com](http://www.test.com/), the Denial URL would be:
+[http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=Denial_Post](http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=Denial_Post)
 
-If your WooCommerce store is located at http://www.test.com/woo, then the Denial URL would be:
-http://www.test.com/woo/?wc-api=WC_Gateway_CCBill&Action=Denial_Post
+If your WooCommerce store is located at [http://www.test.com/woo](http://www.test.com/woo), then the Denial URL would be:
+[http://www.test.com/woo/?wc-api=WC_Gateway_CCBill&Action=Denial_Post](http://www.test.com/woo/?wc-api=WC_Gateway_CCBill&Action=Denial_Post)
 
-**Confirmation**
+## Confirmation
 Your CCBill account is now configured. In your CCBill admin interface, navigate to "Sub Account Admin" and ensure the information displayed is correct.
 
-
-== Changelog ==
-
+## Changelog
 = 1.0 =
 * Initial Release
 
@@ -278,3 +281,39 @@ Your CCBill account is now configured. In your CCBill admin interface, navigate 
 
 = 1.4.0 =
 * Classic forms deprecated
+
+## Plugin Name
+Contributors: CCBill
+Tags: CCBill, payment, gateway, WooCommerce
+Requires at least: 3.0.1
+Tested up to: 5.8.1
+Stable tag: trunk
+License: Private
+License URI: https://ccbill.com/
+
+## CCBill Community
+
+Become part of the CCBill community to get updates on new features, help us improve the platform, and engage with other merchants and developers.
+
+* Follow [@CCBillBIZ on Twitter](https://twitter.com/CCBillBIZ).
+* Visit [CCBill's Blog](https://ccbill.com/blog) and read about latest developments in payment processing.
+
+### Resources
+
+* [API Documentation](https://kb.ccbill.com/CCBill+RESTful+Transaction+API)
+* [Webhooks User Guide](https://kb.ccbill.com/Webhooks+User+Guide)
+* [Knowledge Base](https://kb.ccbill.com/Welcome)
+* [Blog](https://ccbill.com/blog)
+
+### Contact CCBill
+
+Get in touch with us if you have questions or need help with CCBill RESTful API.
+
+<p align="left">
+  <a href="https://twitter.com/CCBillBIZ">Twitter</a> •
+  <a href="https://www.facebook.com/ccbillBIZ/">Facebook</a> •
+  <a href="https://ae.linkedin.com/company/ccbill">LinkedIn</a> •
+  <a href="https://www.instagram.com/ccbillbiz/">Instagram</a> •
+  <a href="https://www.youtube.com/c/CCBillBiz/featured">YouTube</a> •
+  <a href="https://ccbill.com/contact">Support</a>
+</p>
