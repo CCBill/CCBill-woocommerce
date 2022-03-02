@@ -1,3 +1,13 @@
+
+<h1 align="center">
+  <br>
+
+  <br>
+  CCBill WooCommerce Plugin
+  <br>
+</h1>
+
+<p align="center">
 The CCBill payment gateway plugin for WooCommerce allows you to easily configure and accept CCBill
 payments on your WooCommerce-enabled Wordpress Website.
 
@@ -307,3 +317,4 @@ Get in touch with us if you have questions or need help with CCBill RESTful API.
   <a href="https://www.youtube.com/c/CCBillBiz/featured">YouTube</a> •
   <a href="https://ccbill.com/contact">Support</a>
 </p>
+
