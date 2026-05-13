@@ -20,6 +20,12 @@ With billions of consumers linked to a broad, flexible e-commerce platform, plus
 [Click here to get started with taking payments online.](https://ccbill.com/)
 
 This plugin requires WooCommerce.
+
+## Upgrade Notice
+
+*Note: Version 3.0.0 includes breaking changes.*  When upgrading an existing installation, please make note of your CCBill account values in the WooCommerce -> Settings -> Payments -> CCBill section of the Wordpress admin, as these values may need to be reentered after upgrading.  Version 3.0.0 adds support for recurring payments when used with the official [WooCommerce Subscriptions](https://woocommerce.com/products/woocommerce-subscriptions/) plugin.
+
+*Note: Version 3.0.1 (released January 12, 2026) contains a fix for a bug that affected version 3.0.0 when WooSubscriptions was not installed*
 </p>
 
 <p align="center">
@@ -31,6 +37,7 @@ This plugin requires WooCommerce.
 </p>
 
 ## Installation
+
 Installation involves the following steps:
 * Installing the CCBill payment module for WooCommerce
 * Configuring your CCBill account for use with WooCommerce
@@ -38,7 +45,7 @@ Installation involves the following steps:
 
 **Installation Options**
 
-The CCBill WooCommerce module can be installed either by searching for the hosted WordPress plugin, or by uploading the plugin downloaded from the CCBill GitHub page.
+The CCBill payment module for WooCommerce can be installed either by searching for the hosted WordPress plugin, or by uploading the plugin downloaded from the [CCBill website](https://ccbill.com/doc/ccbill-woocommerce-module).
 
 **Installing via WordPress Plugin Directory**
 
@@ -86,179 +93,14 @@ In your CCBill admin interface, navigate to "Sub Account Admin" and select
 Select "Turn off User Management" in the top section.
 Under "Username Settings," select "Do Not Collect Usernames and Passwords."
 
-**Creating a New Billing Form**
-
-The billing form is the CCBill form that will be displayed to customers after they choose to check out using CCBill. The billing form accepts customer payment information, processes the payment, and returns the customer to your WooCommerce store where a confirmation message is displayed.
-
 *Important*
-CCBill provides two types of billing forms. FlexForms is our newest (and recommended) system, but standard forms are still supported. Please select a form type to use with WooCommerce and proceed according to the section for Option 1 or Option 2, according to your selection.
+CCBill provides two types of integration methods. Advanced Integration is our newest (and recommended) system, but FlexForms Integration is still supported. 
+Please see [the official CCBill plugin page](https://ccbill.com/doc/ccbill-woocommerce-module) for detailed instructions for both integration methods.
+Subscription support using either integration method will require some account configuration from CCBill support.
 
-**Option 1: Creating a New Billing Form - FlexForms**
+## External Services
 
-Note: Skip this section if using standard forms
-
-To create a FlexForm form for use with WooCommerce, first ensure "all" is selected in the top Client Account dropdown. FlexForms are not specific to sub accounts, and cannot be managed when a sub account is selected.
-
-Navigate to the FlexSystems tab in the top menu bar and select "FlexForms Payment Links."
-
-All existing forms will be displayed in a table.
-
-Click the "Add New" button in the upper-left to create a new form.
-
-The New Form dialog displays.
-
-** Payment Flow Name **
-
-At the top, enter a name for the new payment flow (this will be different than the form name, as a single form can be used in multiple flows).
-
-** Form Name **
-
-Under Form Name, enter a name for the form.
-
-** Dynamic Pricing **
-
-Under Pricing, check the box to enable dynamic pricing.
-
-**Layout**
-
-Select your desired layout, and save the form.
-
-** Edit the Flow **
-
-Click the arrow button to the left of your new flow to view the details.
-
-Under the green Approve arrow, click the square to modify the action.
-
-** Approval URL **
-
-In the left menu, select "A URL."
-
-Select "Add A New URL" and enter the base URL for your WooCommerce store, followed by: /?wc-api=WC_Gateway_CCBill&Action=CheckoutSuccess
-
-For example, if your WooCommerce store is located at [http://www.test.com](http://www.test.com/), the Approval URL would be: [http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=CheckoutSuccess](http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=CheckoutSuccess)
-
-** URL Name **
-
-Enter a name for this URL. This should be a descriptive name such as "Woo Checkout Success."
-
-** Redirect Time **
-Select a redirect time of 1 second using the slider at the bottom and save the form.
-
-** Promote to Live **
-
-Click the "Promote to Live" button to enable your new form to accept payments.
-
-** Note the Flex ID **
-
-Make note of the Flex ID: this value will be entered into the form name when completing the configuration in WooCommerce.
-
-**WebHooks (FlexForms Only)**
-
-Note: Skip this section if using standard forms
-
-As a final step for configuring a FlexForm, select the sub account to be used with WooCommerce from the top Client Account dropdown.
-
-Navigate to the Account Info tab in the top menu bar and select "Sub Account Admin."
-
-Select "Webhooks" from the left menu, then select "Add" to add a new webhook. Webhook URL
-
-Under Webhook URL, enter the base URL for your WooCommerce store, followed by: /?wc-api=WC_Gateway_CCBill
-
-For example, if your WooCommerce store is located at [http://www.test.com](http://www.test.com/), the Approval URL would be: [http://www.test.com//?wc-api=WC_Gateway_CCBill](http://www.test.com//?wc-api=WC_Gateway_CCBill)
-
-Select "NewSaleFailure" and "NewSaleSuccess," then click the Update button to save the Webhook information.
-
-Continue to the Configuration - WooCommerce section of this document.
-
-
-**Option 2: Creating a New Billing Form - Standard Forms**
-
-Note: Skip this section if using FlexForms.
-
-To create a standard billing form for use with WooCommerce, navigate to the "Form Admin" section of your CCBill admin interface. All existing forms will be displayed in a table.
-
-Click "Create New Form" in the left menu to create your new form.
-
-Select the appropriate option under "Billing Type."  (In most cases, this will
-be "Credit Card.")
-
-Select "Standard" under "Form Type" unless you intend to customize your form.
-
-Select the desired layout, and click "Submit" at the bottom of the page.
-
-Your new form has been created, and is visible in the table under "View All Forms."
-In this example, our new form is named "201cc."  Be sure to note the name of
-your new form, as it will be required in the WooCommerce configuration section.
-
-
-**Configuring the New Billing Form**
-
-Click the title of the newly-created form to edit it.  In the left menu,
-click "Basic."
-
-Under "Basic," select an Approval Redirect Time of 3 seconds, and a
-Denial Redirect Time of "Instant."
-
-
-**Configuring Your CCBill Account**
-
-In your CCBill admin interface, navigate to "Sub Account Admin" and select "Basic" from the left menu.
-Site Name
-
-Enter the URL of your WooCommerce store under "Site Name"
-
-**Approval URL**
-
-Under Approval URL, enter the base URL for your WooCommerce store, followed by:
-/?wc-api=WC_Gateway_CCBill&Action=CheckoutSuccess
-
-For example, if your WooCommerce store is located at [http://www.test.com](http://www.test.com/), the Approval URL would be:
-[http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=CheckoutSuccess](http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=CheckoutSuccess)
-
-If your WooCommerce store is located at [http://www.test.com/woo](http://www.test.com/woo), then the Approval URL would be:
-[http://www.test.com/woo/?wc-api=WC_Gateway_CCBill&Action=CheckoutSuccess](http://www.test.com/woo/?wc-api=WC_Gateway_CCBill&Action=CheckoutSuccess)
-
-**Denial URL**
-
-Under Denial URL, enter the base URL for your WooCommerce store, followed by:
-/?wc-api=WC_Gateway_CCBill&Action=CheckoutFailure
-
-For example, if your WooCommerce store is located at [http://www.test.com](http://www.test.com/), the Denial URL would be:
-[http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=CheckoutFailure](http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=CheckoutFailure)
-
-If your WooCommerce store is located at [http://www.test.com/woo](http://www.test.com/woo), then the Denial URL would be:
-[http://www.test.com/woo/?wc-api=WC_Gateway_CCBill&Action=CheckoutFailure](http://www.test.com/woo/?wc-api=WC_Gateway_CCBill&Action=CheckoutFailure)
-
-**Redirect Time**
-
-Select an approval redirect time of 3 seconds, and a denial redirect time of "Instant."
-
-**Background Post**
-
-While still in the "Sub Account Admin" section, select "Advanced" from the left menu.  Notice the top section titled "Background Post Information."  We will be modifying the Approval Post URL and Denial Post URL fields.
-
-**Approval Post URL**
-Under Approval Post URL, enter the base URL for your WooCommerce store, followed by:
-/?wc-api=WC_Gateway_CCBill&Action=Approval_Post
-
-For example, if your WooCommerce store is located at [http://www.test.com](http://www.test.com/), the Approval URL would be:
-[http://www.test.com//?wc-api=WC_Gateway_CCBill&Action=Approval_Post](http://www.test.com//?wc-api=WC_Gateway_CCBill&Action=Approval_Post)
-
-If your WooCommerce store is located at [http://www.test.com/woo](http://www.test.com/woo), then the Approval URL would be:
-[http://www.test.com/woo//?wc-api=WC_Gateway_CCBill&Action=Approval_Post](http://www.test.com/woo//?wc-api=WC_Gateway_CCBill&Action=Approval_Post)
-
-**Denial Post URL**
-Under Denial Post URL, enter the base URL for your WooCommerce store, followed by:
-/?wc-api=WC_Gateway_CCBill&Action=Denial_Post
-
-For example, if your WooCommerce store is located at [http://www.test.com](http://www.test.com/), the Denial URL would be:
-[http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=Denial_Post](http://www.test.com/?wc-api=WC_Gateway_CCBill&Action=Denial_Post)
-
-If your WooCommerce store is located at [http://www.test.com/woo](http://www.test.com/woo), then the Denial URL would be:
-[http://www.test.com/woo/?wc-api=WC_Gateway_CCBill&Action=Denial_Post](http://www.test.com/woo/?wc-api=WC_Gateway_CCBill&Action=Denial_Post)
-
-## Confirmation
-Your CCBill account is now configured. In your CCBill admin interface, navigate to "Sub Account Admin" and ensure the information displayed is correct.
+This plugin connects to api.ccbill.com to collect payment information during checkout in order to process payment.  When a customer places an order in your WooCommerce store and selects CCBill as the payment method, a request is made to CCBill to generate a secure billing token (Advanced Integration) or the customer is then directed to a form hosted by CCBill where payment information is securely entered and processed (FlexForms integration).  The customer is then directed back to your WooCommerce website where the result of the payment (success or failure) is reflected in the order.  All payment information is processed by CCBill and no payment information is stored by or transmitted through your WooCommerce website for a secure checkout experience.  This service is provided by "CCBill, LLC": [terms of use](https://ccbill.com/html_forms/terms_and_conditions-english.html), [Privacy Policy](https://ccbill.com/cs/acf/html/privacy_policy-english.html).
 
 ## Changelog
 = 1.0 =
@@ -282,11 +124,32 @@ Your CCBill account is now configured. In your CCBill admin interface, navigate 
 = 1.4.0 =
 * Classic forms deprecated
 
-## Plugin Name
+= 1.4.1 =
+* Resolved incorrect 500 response code when communicating with CCBill
+
+= 1.4.6 =
+* Updated name, tested version, and documentation for compliance with Wordpress Marketplace guidelines
+
+= 2.0.0 =
+* Added support for blocks checkout.  NOTE: This version contains breaking changes.  Upgrading to this version from a 1.x version will require you to reenter your CCBill account settings in WooCommerce -> Settings -> Payments -> CCBill
+
+= 3.0.0 =
+* Added support for recurring payments with subscriptions using the official [WooCommerce Subscriptions](https://woocommerce.com/products/woocommerce-subscriptions/) plugin.  NOTE: This version contains breaking changes.  Upgrading to this version from a 1.x or 2.x version may require you to reenter your CCBill account settings in WooCommerce -> Settings -> Payments -> CCBill.
+* Added support for Advanced Integration for a more seamless checkout experience.
+* Currency is now set in WooCommerce rather than a manual settings in the CCBill plugin configuration.
+* Added the ability to mark virtual orders as complete upon successful payment.
+
+= 3.0.1 =
+* Resolved payment error when Woo Subscriptions is not present
+
+= 3.0.2 =
+* Resolved an issue with logging
+
+## CCBill Payment Gateway for WooCommerce
 Contributors: CCBill
 Tags: CCBill, payment, gateway, WooCommerce
-Requires at least: 3.0.1
-Tested up to: 5.8.1
+Requires at least: 6.5.0
+Tested up to: 6.9.4
 Stable tag: trunk
 License: Private
 License URI: https://ccbill.com/

@@ -11,7 +11,12 @@ const Block_Gateway = {
     canMakePayment: () => true,
     ariaLabel: label,
     supports: {
-        features: settings.supports,
+        features: [ 
+            'products', 
+            'subscriptions',
+            'subscription_cancellation',
+        ]
     },
 };
 window.wc.wcBlocksRegistry.registerPaymentMethod( Block_Gateway );
+console.log('settings: ' + JSON.stringify(settings));
