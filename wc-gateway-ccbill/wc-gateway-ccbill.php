@@ -4,7 +4,7 @@
  * Plugin Name: CCBill Payment Gateway for WooCommerce
  * Plugin URI: https://ccbill.com/doc/ccbill-woocommerce-module
  * Description: Accept CCBill payments on your WooCommerce website.
- * Version: 3.0.2
+ * Version: 3.0.3
  * Author: CCBill
  * Author URI: http://www.ccbill.com/
  * License: GPLv2 or later
@@ -267,13 +267,25 @@ function wc_gateway_ccbill_init(){
     }
     
     public function getCCBillDatalinkUrl ($action, $ccbillSubscriptionId) {
-      
+
         $encodedDatalinkUsername = urlencode(html_entity_decode($this->datalink_username));
         $encodedDatalinkPassword = urlencode(html_entity_decode($this->datalink_password));
-        
+
         $url = 'https://datalink.ccbill.com/utils/subscriptionManagement.cgi?username=' . $encodedDatalinkUsername . '&password=' . $encodedDatalinkPassword . '&clientAccnum=' . $this->account_no . '&action=' . $action . '&subscriptionId=' . $ccbillSubscriptionId;
-        
+
         return $url;
+    }
+
+    /**
+     * Return a copy of a datalink URL with the username/password query params
+     * masked so it is safe to write to the log.
+     */
+    private function getRedactedDatalinkUrl ($url) {
+        return preg_replace(
+            '/([?&](?:username|password)=)[^&]*/i',
+            '$1[REDACTED]',
+            $url
+        );
     }
     
     public function triggerCCBillCancellation ( $subscription ) {
@@ -293,16 +305,16 @@ function wc_gateway_ccbill_init(){
       $this->logMessage("triggerCCBillCancellation | ccbill subscription ID: $ccbillSubscriptionId"); 
       
       $url = $this->getCCBillDatalinkUrl('cancelSubscription', $ccbillSubscriptionId);
-      
-      $this->logMessage("triggerCCBillCancellation hit.  Issuing request: $url");
-      
-      $response = wp_remote_get( $url, array() );
-      
+
+      $this->logMessage("triggerCCBillCancellation hit.  Issuing request: " . $this->getRedactedDatalinkUrl($url));
+
+      $response = wp_remote_get( $url, array( 'timeout' => 30 ) );
+
       // Check for errors
       if ( is_wp_error( $response ) ) {
           $error_message = $response->get_error_message();
-          echo "Something went wrong: $error_message";
           $this->logMessage("triggerCCBillCancellation | Something went wrong: $error_message");
+          return false;
       } else {
           // Request was successful, retrieve the body and decode if it's JSON
           $body = wp_remote_retrieve_body( $response );
@@ -331,16 +343,16 @@ function wc_gateway_ccbill_init(){
       $this->logMessage("ccbillSubscriptionIsActive | ccbill subscription ID: $ccbillSubscriptionId"); 
       
       $url = $this->getCCBillDatalinkUrl('viewSubscriptionStatus', $ccbillSubscriptionId);
-      
-      $this->logMessage("ccbillSubscriptionIsActive hit.  Issuing request: $url");
-      
-      $response = wp_remote_get( $url, array() );
-      
+
+      $this->logMessage("ccbillSubscriptionIsActive hit.  Issuing request: " . $this->getRedactedDatalinkUrl($url));
+
+      $response = wp_remote_get( $url, array( 'timeout' => 30 ) );
+
       // Check for errors
       if ( is_wp_error( $response ) ) {
           $error_message = $response->get_error_message();
-          echo "Something went wrong: $error_message";
           $this->logMessage("ccbillSubscriptionIsActive | Something went wrong: $error_message");
+          return false;
       } else {
           // Request was successful, retrieve the body and decode if it's JSON
           $body = wp_remote_retrieve_body( $response );
@@ -1815,14 +1827,14 @@ function wc_gateway_ccbill_init(){
             $errorCode = '';
             $errorDesc = '';
             
-            if ( array_key_exists('errorCode', $responseData) && !empty($repsonseData['errorCode']) )
-              $errorCode = $repsonseData['errorCode'];
-          
-            if ( array_key_exists('declineText', $responseData) && !empty($repsonseData['declineText']) )
-              $errorDesc = $repsonseData['declineText'];
-              
-            if ( empty($errorDesc) && array_key_exists('generalMessage', $responseData) && !empty($repsonseData['generalMessage']) )
-              $errorDesc = $repsonseData['generalMessage'];
+            if ( array_key_exists('errorCode', $responseData) && !empty($responseData['errorCode']) )
+              $errorCode = $responseData['errorCode'];
+
+            if ( array_key_exists('declineText', $responseData) && !empty($responseData['declineText']) )
+              $errorDesc = $responseData['declineText'];
+
+            if ( empty($errorDesc) && array_key_exists('generalMessage', $responseData) && !empty($responseData['generalMessage']) )
+              $errorDesc = $responseData['generalMessage'];
               
             return new WP_Error( 'ccbill_error',
                 sprintf( __( 'CCBill error: %s', 'woocommerce-payment-gateway-ccbill' ), $errorCode . ' – ' . $errorDesc ) );

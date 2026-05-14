@@ -145,6 +145,9 @@ This plugin connects to api.ccbill.com to collect payment information during che
 = 3.0.2 =
 * Resolved an issue with logging
 
+= 3.0.3 =
+* Updates for security and reliability
+
 ## CCBill Payment Gateway for WooCommerce
 Contributors: CCBill
 Tags: CCBill, payment, gateway, WooCommerce
